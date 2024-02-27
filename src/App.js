@@ -19,6 +19,10 @@ function App() {
   const [provider, Setprovider] = useState(null)
   const [dappazon, setDappazon] = useState(null)
 
+  const [electronics, setElectronics] = useState(null)
+  const [clothing, setClothing] = useState(null)
+  const [ toys, setToys] = useState(null)
+
   const loadBlockchain = async () => {
     //Connect to Blockchain
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -40,8 +44,12 @@ function App() {
         const item = await dappazon.items(i + 1)
         items.push(item)
       }
-      
-
+      const electronics = items.filter((item) => item.category === 'electronics')
+      setElectronics(electronics)
+      const clothing = items.filter((item) => item.category === 'clothing')
+      setClothing(clothing)
+      const toys = items.filter((item) => item.category === 'toys')
+      setToys(toys)
   }
 
   useEffect(()=> {
